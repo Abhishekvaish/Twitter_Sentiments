@@ -1,0 +1,133 @@
+{% extends 'Trending/base.html' %}
+
+{% block title %}Trending Topics in India{% endblock %}
+
+
+{% block topics_active %}active{% endblock %}
+
+
+{% block body %}
+<section class="ftco-section ftco-no-pt">
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-lg-12 services-wrap px-4 pt-5">
+                    <div class="row pt-md-3">
+                    {% for topic,count in context  %}
+						{% if count > 100 %}
+	                        <a href="{% url 'Trending:detail' forloop.counter %}">
+                            <div class="col-md-3 d-flex align-items-stretch">
+		    				<div class="services text-center">
+		    					<div class="icon d-flex justify-content-center align-items-center">
+		    						<span class="flaticon-natural-resources"></span>
+		    					</div>
+		    					<div class="text">
+		    						<h3>{{ topic }}</h3>
+		    						<p>Over {{ count }} tweets </p>
+		    					</div>
+		    					<a href="{% url 'Trending:detail' forloop.counter %}" class="btn-custom d-flex align-items-center justify-content-center"><span class="ion-ios-arrow-round-forward"></span></a>
+		    				</div>
+		    			</div>
+                        </a>
+							{% if  forloop.counter|divisibleby:"4" %}
+	                            </div><div class="row pt-md-3"></div><div class="row pt-md-3">
+	                        {% endif %}
+						{% endif %}
+                    {% endfor  %}
+                    </div>
+                    <!--sample
+    				<div class="row pt-md-3">
+    					<div class="col-md-3 d-flex align-items-stretch">
+		    				<div class="services text-center">
+		    					<div class="icon d-flex justify-content-center align-items-center">
+		    						<span class="flaticon-fence"></span>
+		    					</div>
+		    					<div class="text">
+		    						<h3>Garden Care</h3>
+		    						<p>Seeking justice in the world is a sed significant emotional and investment when we follow this call.</p>
+		    					</div>
+		    					<a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="ion-ios-arrow-round-forward"></span></a>
+		    				</div>
+		    			</div>
+		    			<div class="col-md-3 d-flex align-items-stretch">
+		    				<div class="services text-center">
+		    					<div class="icon d-flex justify-content-center align-items-center">
+		    						<span class="flaticon-lawn-mower"></span>
+		    					</div>
+		    					<div class="text">
+		    						<h3>Lawn mowing</h3>
+		    						<p>Seeking justice in the world is a sed significant emotional and investment when we follow this call.</p>
+		    					</div>
+		    					<a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="ion-ios-arrow-round-forward"></span></a>
+		    				</div>
+		    			</div>
+		    			<div class="col-md-3 d-flex align-items-stretch">
+		    				<div class="services text-center">
+		    					<div class="icon d-flex justify-content-center align-items-center">
+		    						<span class="flaticon-natural-resources"></span>
+		    					</div>
+		    					<div class="text">
+		    						<h3>Lawn care</h3>
+		    						<p>Seeking justice in the world is a sed significant emotional and investment when we follow this call.</p>
+		    					</div>
+		    					<a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="ion-ios-arrow-round-forward"></span></a>
+		    				</div>
+		    			</div>
+                        <div class="col-md-3 d-flex align-items-stretch">
+		    				<div class="services text-center">
+		    					<div class="icon d-flex justify-content-center align-items-center">
+		    						<span class="flaticon-natural-resources"></span>
+		    					</div>
+		    					<div class="text">
+		    						<h3>Lawn care</h3>
+		    						<p>Seeking justice in the world is a sed significant emotional and investment when we follow this call.</p>
+		    					</div>
+		    					<a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="ion-ios-arrow-round-forward"></span></a>
+		    				</div>
+		    			</div>
+    				</div>
+                    <div class="row pt-md-3"></div>
+                    <div class="row pt-md-3">
+    					<div class="col-md-3 d-flex align-items-stretch">
+		    				<div class="services text-center">
+		    					<div class="icon d-flex justify-content-center align-items-center">
+		    						<span class="flaticon-fence"></span>
+		    					</div>
+		    					<div class="text">
+		    						<h3>Garden Care</h3>
+		    						<p>Seeking justice in the world is a sed significant emotional and investment when we follow this call.</p>
+		    					</div>
+		    					<a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="ion-ios-arrow-round-forward"></span></a>
+		    				</div>
+		    			</div>
+		    			<div class="col-md-3 d-flex align-items-stretch">
+		    				<div class="services text-center">
+		    					<div class="icon d-flex justify-content-center align-items-center">
+		    						<span class="flaticon-lawn-mower"></span>
+		    					</div>
+		    					<div class="text">
+		    						<h3>Lawn mowing</h3>
+		    						<p>Seeking justice in the world is a sed significant emotional and investment when we follow this call.</p>
+		    					</div>
+		    					<a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="ion-ios-arrow-round-forward"></span></a>
+		    				</div>
+		    			</div>
+		    			<div class="col-md-3 d-flex align-items-stretch">
+		    				<div class="services text-center">
+		    					<div class="icon d-flex justify-content-center align-items-center">
+		    						<span class="flaticon-natural-resources"></span>
+		    					</div>
+		    					<div class="text">
+		    						<h3>Lawn care</h3>
+		    						<p>Seeking justice in the world is a sed significant emotional and investment when we follow this call.</p>
+		    					</div>
+		    					<a href="#" class="btn-custom d-flex align-items-center justify-content-center"><span class="ion-ios-arrow-round-forward"></span></a>
+		    				</div>
+		    			</div>
+    				</div>
+    				-->
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+{% endblock %}

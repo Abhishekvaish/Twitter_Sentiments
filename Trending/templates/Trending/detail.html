@@ -1,0 +1,11 @@
+{% extends 'Trending/base.html' %}
+{% block title %}{{topic}}{% endblock %}
+
+{% block body %}
+
+<h2>
+    Details of  {{topic}}
+</h2>
+<img src="data:image/png;base64,{{fig1|safe}}" height="1200" width="1200"/>
+<img src="data:image/png;base64,{{fig2|safe}}" height="600" width="1200"/>
+{% endblock %}

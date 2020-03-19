@@ -1,0 +1,41 @@
+{% extends 'Trending/base.html' %}
+
+{% block title %}Trending{% endblock %}
+
+
+{% block home_active %}active{% endblock %}
+
+{% block body %}
+    <div class="container align-middle" >
+        <img src="data:image/png;base64,{{fig1|safe}}" height="1200" width="1200"/>
+    </div>
+    <div class="container align-middle" >
+        <img src="data:image/png;base64,{{fig2|safe}}" height="500" width="1200"/>
+    </div>
+    <div class="container align-middle" >
+        <img src="data:image/png;base64,{{fig3|safe}}" height="500" width="1200"/>
+    </div>
+
+    {% if 0 %}
+    <div class="container align-middle" style="width:500;height:1400">
+           <img src="data:image/png;base64,{{fig1|safe}}" height="1200" width="1200"/>
+            <img src="data:image/png;base64,{{fig3|safe}}" height="700" width="1200"/>
+            <img src="data:image/png;base64,{{fig2|safe}}" height="700" width="1200"/>
+    </div>
+    <img src="data:image/png;base64,{{fig2|safe}}" height="700" width="1200"/>
+    <div class="container align-middle" style="width:400;height:400">
+        <img src="data:image/png;base64,{{fig3|safe}}" height="500" width="1200"/>
+    </div>
+    {% endif %}
+
+    {% if 0 %}
+    <section class="ftco-section testimony-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+                <img src="data:image/png;base64,{{fig2|safe}}" height="500" width="1200"/>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+{% endblock %}

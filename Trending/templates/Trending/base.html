@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static  %}
+<head>
+    <title>{% block title %}Title{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href="{% static 'Trending/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'Trending/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Trending/css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Trending/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'Trending/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'Trending/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'Trending/css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'Trending/css/style.css' %}">
+
+</head>
+<body>
+
+    <!--heading-->
+    <div class="container pt-5 pb-4">
+			<div class="row justify-content-between">
+				<div class="col-md-8 order-md-last">
+					<div class="row">
+						<div class="col-md-6 text-center">
+							<a class="navbar-brand" href="http://127.0.0.1:8000/">Twitter<span>Sentiments</span></a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 d-flex">
+					<div class="social-media">
+		    		<p class="mb-0 d-flex">
+		    			<a href="https://twitter.com/Abhishekvaish40" class="d-flex align-items-center justify-content-center"><span class="fa fa-twitter"><i class="sr-only">Twitter</i></span></a>
+		    			<a href="https://github.com/Abhishekvaish?tab=repositories" class="d-flex align-items-center justify-content-center"><span class="fa fa-github"><i class="sr-only">Github</i></span></a>
+                        <a href="https://www.linkedin.com/in/abhishek-vaish-b3195817a/" class="d-flex align-items-center justify-content-center"><span class="fa fa-linkedin"><i class="sr-only">Instagram</i></span></a>
+		    		</p>
+	        </div>
+				</div>
+			</div>
+		</div>
+
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container-fluid">
+
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="fa fa-bars"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav m-auto">
+	        	<li class="nav-item {% block home_active %}{% endblock %}"><a href="{% url 'Trending:index' %}" class="nav-link">Home</a></li>
+	        	<li class="nav-item {% block topics_active %}{% endblock %}"><a href="{% url 'Trending:topics' %}" class="nav-link">Topics</a></li>
+                <li class="nav-item {% block about_active %}{% endblock %}"><a href="{% url 'Trending:about' %}" class="nav-link">About</a></li>
+
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+
+
+    {% block body %}
+
+    {% endblock %}
+
+    <section class="ftco-intro bg-primary py-5">
+			<div class="container">
+				<div class="row justify-content-between align-items-center">
+					<div class="col-md-6">
+						<h2>Contact with us</h2>
+						<p>Do you have any comments or questions about the products then contact us.</p>
+					</div>
+					<div class="col-md-5 text-md-right">
+						<span class="contact-number">+91 (829) 188-05-62 </span>
+                        <span class="contact-number">+91 (810) 409-61-86</span>
+					</div>
+				</div>
+			</div>
+		</section>
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-6 col-lg">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="logo"><a href="#">Twitter <span>Sentiments</span></a></h2>
+              <p>computationally identifying and categorizing opinions expressed in a piece of text, especially in order to determine whether the writer's attitude towards a particular topic, product, etc. is positive, negative, or neutral.</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <li class="ftco-animate"><a href="https://twitter.com/thakerrahul16"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="https://github.com/rahulthaker?tab=repositories"><span class="icon-github"></span></a></li>
+                <li class="ftco-animate"><a href="https://www.linkedin.com/in/rahul-t-634946141/"><span class="icon-linkedin"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Contact information</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                  <li><span class="icon icon-map-marker"></span><span class="text">KJ Somaiya Institute of Engineering and Information Technology</span></li>
+	                  <li><a href="#"><span class="icon icon-phone"></span><span class="text">+91 (829) 188-05-62<br/>+91 (810) 409-61-86</span></a></li>
+	                  <li><a href="#"><span class="icon icon-envelope"></span><span class="text">abhishek.vaish@somaiya.edu <br/>rahul.thaker@somaiya.edu</span></a></li>
+
+	              </ul>
+	            </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p>
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                All rights reserved | This website is made with <i class="icon-heart color-danger" aria-hidden="true"></i>
+                <a href="https://www.djangoproject.com/start/overview/" target="_blank">Django</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- loader -->
+    <div id="ftco-loader" class="show fullscreen">
+        <svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+            <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/>
+        </svg>
+    </div>
+
+    <script src="{% static 'Trending/js/jquery.min.js' %}"></script>
+    <script src="{% static 'Trending/js/jquery-migrate-3.0.1.min.js' %}"></script>
+    <script src="{% static 'Trending/js/popper.min.js' %}"></script>
+    <script src="{% static 'Trending/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'Trending/js/jquery.easing.1.3.js' %}"></script>
+    <script src="{% static 'Trending/js/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'Trending/js/jquery.stellar.min.js' %}"></script>
+    <script src="{% static 'Trending/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'Trending/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'Trending/js/scrollax.min.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="{% static 'Trending/js/google-map.js' %}"></script>
+    <script src="{% static 'Trending/js/main.js' %}"></script>
+
+</body>
+</html>
