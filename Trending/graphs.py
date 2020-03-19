@@ -29,7 +29,6 @@ def get_topics():
 
     return sorted(context.items() ,key=lambda x:x[1])[::-1]
 
-
 def getIndia():
 
 
@@ -92,7 +91,6 @@ def getBar():
     ax.set_xlabel('Hashtags')
     ax.set_ylabel('Tweets')
     return graphic(fig)
-
 
 def  topic_wordcloud(topic):
     dfc=pd.DataFrame()
