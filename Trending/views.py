@@ -1,5 +1,4 @@
 from django.shortcuts import render
-import plotly.graph_objects as go
 import plotly
 import plotly.tools as tls
 import matplotlib.pyplot as plt
