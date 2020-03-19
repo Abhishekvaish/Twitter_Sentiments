@@ -133,6 +133,32 @@ def topic_sentiment(topic):
     plt.title(f"Sentiments for {cdf['topic'][0]}")
     return graphic(fig)
 
+def topic_day(topic):
+    dfc=pd.DataFrame()
+    dfc=dataset[dataset['topic']==topic]
+    dfc['date'] = pd.to_datetime(dataset['date'])
+    dfc['time'] = pd.to_datetime(dataset['time'])
+    listday=[i.day for i in dfc['date'].tolist()]
+    listday=sorted(listday)
+    #listmonth=[i.month for i in dfc['date'].tolist()]
+    listhour=[i.hour for i in dfc['time'].tolist()]
+    listhour=sorted(listhour)
+    binsh=np.arange(listhour[0],listhour[len(listhour)-1],1)
+    binsd=np.arange(1,30,1)
+    fignewhour=plt.figure()
+    plt.hist(listhour, bins=binsh, alpha=0.5)
+    plt.title('hour graph for'+topic)
+    plt.xlabel('hour')
+    plt.ylabel('No of tweets')
+
+    fignew=plt.figure()
+    plt.hist(listday, bins=binsd, alpha=0.5,color='orange')
+    plt.title('day graph for '+topic)
+    plt.xlabel('day')
+    plt.ylabel('No of tweets')
+    return graphic(fignewhour),graphic(fignew)
+
+
 #if __name__ == '__main__':
 dataset = pd.read_csv('tweets.csv')#get_dataset()
 tweetstxt = getweetstxt()
@@ -143,5 +169,6 @@ stopwords.add('will')
 india = getIndia()
 piechrat = getPieChart()
 bargraph = getBar()
+topics = get_topics()
 
 

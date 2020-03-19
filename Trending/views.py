@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Agg')
 from . import graphs
-List= graphs.get_topics()
+List= graphs.topics
 
 
 def index(request):
@@ -28,11 +28,12 @@ def about(request):
 
 def detail(request, id):
     topic = List[id-1][0]
-
+    g = graphs.topic_day(topic)
     context = {
         'topic':topic,
         'fig1':graphs.topic_wordcloud(topic),
         'fig2':graphs.topic_sentiment(topic),
+        'fig3':g[0],'fig4':g[1],
 
     }
     return render(request,'Trending/detail.html',context)
