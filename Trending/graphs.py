@@ -11,7 +11,7 @@ from textblob import TextBlob
 #########prerequisite############
 def get_dataset():
     from urllib import request
-    link_csv = 'https://drive.google.com/uc?id=1BY0SXU2zltM2eyKfT8gHUQRElAjx1P1W&export=download'
+    link_csv = 'link'
     response = request.urlopen(link_csv)
     content = response.read().decode('utf8')
     with open('tweets.csv','w',encoding='utf-8',newline='') as f:
