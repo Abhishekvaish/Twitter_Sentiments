@@ -5,11 +5,12 @@
 
 {% block topics_active %}active{% endblock %}
 
-
+<!--style="background-color: #f5faf6;"-->
 {% block body %}
-<section class="ftco-section ftco-no-pt">
-    	<div class="container">
-    		<div class="row">
+{% load static %}
+<section class="ftco-section ftco-no-pt"  style="background-image:url({% static 'Trending/images/back.jpg' %})">
+    	<div class="container" >
+    		<div class="row" >
     			<div class="col-lg-12 services-wrap px-4 pt-5">
                     <div class="row pt-md-3">
                     {% for topic,count in context  %}

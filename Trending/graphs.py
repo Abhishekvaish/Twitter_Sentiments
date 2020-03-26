@@ -7,6 +7,8 @@ from io import BytesIO
 import base64
 from textblob import TextBlob
 
+
+#########prerequisite############
 def get_dataset():
     from urllib import request
     link_csv = 'https://drive.google.com/uc?id=1BY0SXU2zltM2eyKfT8gHUQRElAjx1P1W&export=download'
@@ -15,13 +17,24 @@ def get_dataset():
     with open('tweets.csv','w',encoding='utf-8',newline='') as f:
         f.write(content)
     return pd.read_csv('tweets.csv')
-
 def getweetstxt():
     with open('tweets.txt','w',encoding='utf-8') as f:
         for i in range(dataset.shape[0]):
             f.write(dataset['topic'][i]+dataset['full_text'][i]+'\n')
     return open('tweets.txt','r',encoding="ascii",errors='ignore').read()
+def graphic(figure):
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png',bbox_inches = 'tight',pad_inches = 0)
+    buffer.seek(0)
+    image_png = buffer.getvalue()
+    buffer.close()
 
+    graphic = base64.b64encode(image_png)
+    graphic = graphic.decode('utf-8')
+    plt.clf()
+    return graphic
+
+########topics###############
 def get_topics():
     context ={}
     for i in dataset['topic'].unique():
@@ -29,24 +42,22 @@ def get_topics():
 
     return sorted(context.items() ,key=lambda x:x[1])[::-1]
 
+########Home################
 def getIndia():
-
 
     twitter_mask=np.array(Image.open('trial2.jfif'))
     twitter_wc = WordCloud(background_color='black', max_words=10000, mask=twitter_mask, stopwords=stopwords,collocations=False)
-
     # generate the word cloud
     twitter_wc.generate(tweetstxt)
 
     # display the word cloud
     fig = plt.figure()
-    fig.set_figwidth(12) # set width
+    fig.set_figwidth(9) # set width
     fig.set_figheight(12) # set height
     plt.imshow(twitter_wc, interpolation='bilinear')
     plt.axis('off')
     return graphic(fig)
     #return uri(fig)
-
 def getPieChart():
     dataset['count']=1
     piedf=dataset.groupby('topic').sum().sort_values(['count'],ascending=False).head(6)
@@ -54,7 +65,7 @@ def getPieChart():
     colors_list = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', 'lightgreen','pink']
     explode_list = [0.1, 0.1, 0.1, 0, 0,0]
     piedf['count'].plot(kind='pie',
-                            figsize=(15, 6),
+                            figsize=(10,6),
                             autopct='%1.1f%%',
                             startangle=90,
                             shadow=True,
@@ -68,52 +79,33 @@ def getPieChart():
     plt.axis('equal')
     plt.ylabel('')
     plt.legend(labels=piedf.index, loc='upper left')
-
     return graphic(fig)
-
-def graphic(figure):
-    buffer = BytesIO()
-    plt.savefig(buffer, format='png')
-    buffer.seek(0)
-    image_png = buffer.getvalue()
-    buffer.close()
-
-    graphic = base64.b64encode(image_png)
-    graphic = graphic.decode('utf-8')
-    plt.close(figure)
-    return graphic
-
 def getBar():
     fig=plt.figure()
-    fig.set_figwidth(15)
-    fig.set_figheight(6)
-    ax=dataset['topic'].value_counts().head(10).plot(kind='bar',figsize=(15,6),color='yellow')
+    ax=dataset['topic'].value_counts().head(10).plot(kind='bar',figsize=(10.5,4),color='blue')
     ax.set_xlabel('Hashtags')
     ax.set_ylabel('Tweets')
     return graphic(fig)
 
-def  topic_wordcloud(topic):
-    dfc=pd.DataFrame()
+########topicgraph#########
+def topic_graph(topic):
+    context = {}
     dfc=dataset[dataset['topic']==topic]
-    dfc.groupby('topic').sum()
+    dfc.reset_index(inplace=True)
+    #################wordcloud######################
     topictweets=str(dfc['full_text'])
-    twitter= WordCloud(background_color='white',    max_words=1000,stopwords=stopwords ,collocations=False)
+    twitter= WordCloud(background_color='black',    max_words=1000,stopwords=stopwords ,collocations=False)
     twitter.generate(topictweets)
     fig = plt.figure()
     fig.set_figwidth(12)
     fig.set_figheight(12)
     plt.imshow(twitter, interpolation='bilinear')
     plt.axis('off')
-    return graphic(fig)
-
-def topic_sentiment(topic):
-    cdf=dataset[dataset['topic']==topic]
-    cdf.reset_index(inplace=True)
-    possitive=0
-    negative=0
-    neutral=0
-    for i in range(cdf.shape[0]):
-        analysis = TextBlob(cdf['full_text'][i])
+    context['fig1'] = graphic(fig)
+    ##################SENTIMENTS#####################
+    possitive,negative,neutral=0,0,0
+    for i in range(dfc.shape[0]):
+        analysis = TextBlob(dfc['full_text'][i])
         if analysis.sentiment.polarity > 0:
             possitive=possitive+1
         elif analysis.sentiment.polarity == 0:
@@ -124,42 +116,40 @@ def topic_sentiment(topic):
     sentdf['type']=['possitive','neutral','negative']
     sentdf.set_index('type',inplace=True)
     sentdf['count']=[possitive,neutral,negative]
+    ####################BARGRAPH########################
     fig=plt.figure()
-    fig.set_figwidth(12)
-    fig.set_figheight(12)
     sentdf.plot(kind='bar',figsize=(10, 6),color=('lightblue','orange','red'))
     plt.xlabel('emotion')
     plt.ylabel('No of tweets')
-    plt.title(f"Sentiments for {cdf['topic'][0]}")
-    return graphic(fig)
+    plt.title(f"Sentiments for {topic}")
+    context['fig2'] = graphic(fig)
+    ####################PIECHART##########################
+    sentdf['count'].plot(kind='pie',autopct='%1.1f%%',startangle=90,figsize=(10,6),
+                            shadow=True,
+                            colors=['skyblue','yellow','red'],
+                            explode=[0.1,0,0],
+                             labels=None)
 
-def topic_day(topic):
-    dfc=pd.DataFrame()
-    dfc=dataset[dataset['topic']==topic]
-    dfc['date'] = pd.to_datetime(dataset['date'])
-    dfc['time'] = pd.to_datetime(dataset['time'])
-    listday=[i.day for i in dfc['date'].tolist()]
-    listday=sorted(listday)
-    #listmonth=[i.month for i in dfc['date'].tolist()]
-    listhour=[i.hour for i in dfc['time'].tolist()]
+    fig = plt.Figure()
+    plt.title('Overall Sentiment', y=1.12)
+    plt.axis('equal')
+    plt.ylabel('')
+    plt.legend(labels=sentdf.index, loc='upper left')
+    context['fig3'] = graphic(fig)
+    ###################DAYBARGRAPGH########################
+    listhour=[int(i[3:5]) for i in dfc['time'].tolist()]
     listhour=sorted(listhour)
     binsh=np.arange(listhour[0],listhour[len(listhour)-1],1)
-    binsd=np.arange(1,30,1)
+
     fignewhour=plt.figure()
     plt.hist(listhour, bins=binsh, alpha=0.5)
     plt.title('hour graph for'+topic)
     plt.xlabel('hour')
     plt.ylabel('No of tweets')
-
-    fignew=plt.figure()
-    plt.hist(listday, bins=binsd, alpha=0.5,color='orange')
-    plt.title('day graph for '+topic)
-    plt.xlabel('day')
-    plt.ylabel('No of tweets')
-    return graphic(fignewhour),graphic(fignew)
+    context['fig4'] = graphic(fignewhour)
+    return context
 
 
-#if __name__ == '__main__':
 dataset = pd.read_csv('tweets.csv')#get_dataset()
 tweetstxt = getweetstxt()
 stopwords=set(STOPWORDS)
