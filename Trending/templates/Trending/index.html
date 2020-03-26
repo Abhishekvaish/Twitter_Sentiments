@@ -13,9 +13,10 @@
     			<div class="col-lg-4 py-5 order-md-last">
 	                 <div class="heading-section ftco-animate">
         	          	<span class="subheading">WordCloud</span>
-        	            <h2 class="mb-4">Words </h2>
+        	            <h2 class="mb-4">India Today</h2>
         	            <p>A word cloud (also known as tag cloud or text cloud) is a visual representation of word frequency and value. It is used to highlight how often a specific term or category appears in a source of data. The more times a keyword is present in a data set, the bigger and bolder the keyword appears.</p>
-        	            <p><a href="#" class="btn btn-primary py-3 px-4">Get a Quote</a></p>
+                         <p>This WordCloud gives us a visual Respresentation of the text, words used by people  in which the frequency of word varies directly with the size.</p>
+        	            <p><a href="https://amueller.github.io/word_cloud/" class="btn btn-primary py-3 px-4">Learn More</a></p>
     	          </div>
     			</div>
     			<div class="col-lg-8 services-wrap px-4 pt-5">
@@ -32,10 +33,10 @@
         <div class="row">
         <div class="col-lg-3 py-5">
             <div class="heading-section ftco-animate">
-	          	<span class="subheading">WordCloud</span>
-	            <h2 class="mb-4">Words </h2>
-	            <p>A word cloud (also known as tag cloud or text cloud) is a visual representation of word frequency and value. It is used to highlight how often a specific term or category appears in a source of data. The more times a keyword is present in a data set, the bigger and bolder the keyword appears.</p>
-	            <p><a href="#" class="btn btn-primary py-3 px-4">Get a Quote</a></p>
+	          	<span class="subheading">Daily Trends</span>
+	            <h2 class="mb-4">Trending Topics in India</h2>
+	            <p>The bargraph here shows the Top 10 trending topics in India Today .</p>
+	            <p><a href={% url 'Trending:topics' %} class="btn btn-primary py-3 px-4">All topics</a></p>
 	          </div>
         </div>
         <div class="col-lg-9 py-5">
@@ -63,47 +64,4 @@
       </div>
     </div>
     <br/><br/>
-
-
-
-
-{% if 0 %}
-    <div>
-        <section class="ftco-section bg-light">
-    	<div class="container" >
-    		<div class="row justify-content-center mb-5">
-                  <div class="col-md-10 text-center heading-section ftco-animate">
-                      	<span class="subheading">In Last 24 hours</span>
-                        <h2 class="mb-4">Top Ten Trending Topics</h2>
-              </div>
-            </div>
-            <div class="row justify-content-center mb-5">
-        	    <div class="col-md-12 p-2" >
-                    <img src="data:image/png;base64,{{fig2|safe}}" width="1130" height="534">-->
-                </div>
-            </div>
-            <div class="row justify-content-center mb-5 p-2" >
-                <p>Being a web framework, Django needs a convenient way to generate HTML dynamically. The most common approach relies on templates. A template contains the static parts of the desired HTML output as well as some special syntax describing how dynamic content will be inserted. For a hands-on example of creating HTML pages with templates, see Tutorial 3. A Django project can be configured with one or several template engines (or even zero if you don’t use templates). Django ships built-in backends for its own template system, creatively called the Django template language (DTL), and for the popular alternative Jinja2. Backends for other template languages may be available from third-parties.<br/><br/>Django defines a standard API for loading and rendering templates regardless of the backend. Loading consists of finding the template for a given identifier and preprocessing it, usually compiling it to an in-memory representation. Rendering means interpolating the template with context data and returning the resulting string. The Django template language is Django’s own template system. Until Django 1.8 it was the only built-in option available. It’s a good template library even though it’s fairly opinionated and sports a few idiosyncrasies. If you don’t have a pressing reason to choose another backend, you should use the DTL, especially if you’re writing a pluggable application and you intend to distribute templates. Django’s contrib apps that include templates, like django.contrib.admin, use the DTL.<br/><br/>For historical reasons, both the generic support for template engines and the implementation of the Django template language live in the django.template namespace.</p>
-            </div>
-        </div>
-    </section>
-        <div class="container align-middle" style="width:500;height:1400">
-           <img src="data:image/png;base64,{{fig1|safe}}" height="1200" width="1200"/>
-            <img src="data:image/png;base64,{{fig3|safe}}" height="700" width="1200"/>
-            <img src="data:image/png;base64,{{fig2|safe}}" height="700" width="1200"/>
-    </div>
-        <img src="data:image/png;base64,{{fig2|safe}}" height="700" width="1200"/>
-        <div class="container align-middle" style="width:400;height:400">
-        <img src="data:image/png;base64,{{fig3|safe}}" height="500" width="1200"/>
-    </div>
-        <section class="ftco-section testimony-section">
-      <div class="container">
-        <div class="row justify-content-center mb-5">
-                <img src="data:image/png;base64,{{fig2|safe}}" height="500" width="1200"/>
-        </div>
-      </div>
-    </section>
-    </div>
-{% endif %}
-
 {% endblock %}
