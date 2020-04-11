@@ -11,12 +11,14 @@ from textblob import TextBlob
 #########prerequisite############
 def get_dataset():
     from urllib import request
-    link_csv = 'link'
+    link_csv = 'https://drive.google.com/uc?id=1BY0SXU2zltM2eyKfT8gHUQRElAjx1P1W&export=download'
     response = request.urlopen(link_csv)
+    print("getting dataset.....")
     content = response.read().decode('utf8')
     with open('tweets.csv','w',encoding='utf-8',newline='') as f:
         f.write(content)
     return pd.read_csv('tweets.csv')
+
 def getweetstxt():
     with open('tweets.txt','w',encoding='utf-8') as f:
         for i in range(dataset.shape[0]):
@@ -137,7 +139,7 @@ def topic_graph(topic):
     plt.legend(labels=sentdf.index, loc='upper left')
     context['fig3'] = graphic(fig)
     ###################DAYBARGRAPGH########################
-    listhour=[int(i[3:5]) for i in dfc['time'].tolist()]
+    listhour=[int(i[0:2]) for i in dfc['time'].tolist()]
     listhour=sorted(listhour)
     binsh=np.arange(listhour[0],listhour[len(listhour)-1],1)
 
@@ -149,8 +151,8 @@ def topic_graph(topic):
     context['fig4'] = graphic(fignewhour)
     return context
 
-
-dataset = pd.read_csv('tweets.csv')#get_dataset()
+dataset = pd.read_csv('tweets.csv')
+#dataset = get_dataset()
 tweetstxt = getweetstxt()
 stopwords=set(STOPWORDS)
 stopwords.add('amp')
