@@ -151,6 +151,18 @@ def topic_graph(topic):
     context['fig4'] = graphic(fignewhour)
     return context
 
+#topic_pop_up #added
+def topic_board():
+    topic_pop_up=[]
+    for topic,tweets in zip(dataset['topic'].value_counts().index,dataset['topic'].value_counts().values):
+        list_temp=[]
+        list_temp.append(topic)
+        list_temp.append(tweets)
+        random_tweet=dataset.query(f"topic == '{topic}'")[['full_text']].sample(n=1).iat[0,0]
+        list_temp.append(random_tweet)
+        topic_pop_up.append(list_temp)
+    return topic_pop_up
+
 dataset = pd.read_csv('tweets.csv')
 #dataset = get_dataset()
 tweetstxt = getweetstxt()
